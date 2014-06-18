@@ -14,6 +14,7 @@ public class CharacterEncodingFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
+		System.out.println("filter init.");
 	}
 
 	@Override
@@ -27,6 +28,7 @@ public class CharacterEncodingFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		System.out.println("filter destroyed.");
 	}
 
 }

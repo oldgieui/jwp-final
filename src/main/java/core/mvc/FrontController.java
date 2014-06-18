@@ -1,5 +1,4 @@
 package core.mvc;
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -23,8 +22,9 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init() throws ServletException {
 		rm = (RequestMapping)getServletContext().getAttribute(ServletContextLoader.DEFAULT_REQUEST_MAPPING);
+		System.out.println(rm.findController("/save.next").toString());
 	}
-
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -32,11 +32,14 @@ public class FrontController extends HttpServlet {
 		logger.debug("Method : {}, Request URI : {}", req.getMethod(), requestUri);
 		
 		Controller controller = rm.findController(urlExceptParameter(req.getRequestURI()));
-		String viewName;
+		System.out.println(req.getRequestURI().toString());
+		System.out.println(controller.toString());
+		String viewName = "/";
 		try {
 			viewName = controller.execute(req, resp);
 		} catch (Exception e) {
-			throw new ServletException(e.getMessage());
+//			throw new ServletException(e.getMessage());
+			e.printStackTrace();
 		}
 		movePage(req, resp, viewName);
 	}
