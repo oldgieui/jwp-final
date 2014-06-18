@@ -17,6 +17,7 @@ function writeAnswers(e) {
 	 request.onreadystatechange = function() {
 		 if(request.readyState == 4 && request.status == 200) {
 			 location.reload(true);
+			 //무조건 통째로 리로드 
 		 }
 	 }
 	 
